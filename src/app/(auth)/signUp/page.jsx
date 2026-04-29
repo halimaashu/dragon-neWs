@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -9,8 +10,20 @@ export default function SignUpPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const handelSignUp = (data) => {
-    console.log(data.email);
+  const handelSignUp = async (data) => {
+    const { name, email, password, photo } = data;
+
+    const { data:res, error } = await authClient.signUp.email({
+      name: name, // required
+      email: email, // required
+      password: password, // required
+      image: photo,
+      callbackURL: "/",
+    });
+    console.log(res,error,"from signup pages")
+    if(error){
+      alert(`please sure that:  ${error.message}`)
+    }
   };
   //  console.log(errors,"from erros")
   return (
@@ -69,7 +82,7 @@ export default function SignUpPage() {
             )}
           </fieldset>
           <button type="submit" className="w-full bg-black btn text-white">
-            SignUp 
+            SignUp
           </button>
         </form>
       </div>

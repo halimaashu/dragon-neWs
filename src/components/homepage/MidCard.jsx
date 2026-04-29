@@ -6,7 +6,7 @@ import { FaBookmark } from "react-icons/fa";
 import { IoIosStar, IoMdEye } from "react-icons/io";
 
 export default function MidCard({ news }) {
-  console.log(news, "news fork mane kuuuuuuu");
+  // console.log(news, "news fork mane kuuuuuuu");
   return (
     <div>
       <div className="card bg-base-100 shadow-sm">

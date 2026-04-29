@@ -1,10 +1,24 @@
+"use client"
+import { authClient } from "@/lib/auth-client";
 import React from "react";
 
 export default function RightSide() {
+  const handelGoogleLogin=async()=>{
+     const data = await authClient.signIn.social({
+    provider: "google",
+  });
+
+  }
+  const handelGithubLogin=async()=>{
+     const data = await authClient.signIn.social({
+    provider: "github",
+  });
+
+  }
   return (
     <div className="">
       <h2 className="text-xl font-bold">Login With</h2>
-      <button className="btn w-full bg-black text-white border-black mt-4 mb-2">
+      <button onClick={handelGithubLogin} className="btn w-full bg-black text-white border-black mt-4 mb-2">
         <svg
           aria-label="GitHub logo"
           width="16"
@@ -22,7 +36,7 @@ export default function RightSide() {
       <br></br>
 
       {/* Google */}
-      <button className="btn w-full bg-white text-black border-[#e5e5e5]">
+      <button onClick={handelGoogleLogin} className="btn w-full bg-white text-black border-[#e5e5e5]">
         <svg
           aria-label="Google logo"
           width="16"
